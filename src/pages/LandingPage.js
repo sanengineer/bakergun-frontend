@@ -6,6 +6,7 @@ import Requirements from "../components/Requirements";
 import Quotes from "../components/Quotes";
 import Features from "../components/Features";
 import Newsletter from "../components/Newsletter";
+import Footer from "../components/Footer"
 
 import "../assets/scss/style.scss";
 
@@ -20,6 +21,7 @@ export default class LandingPage extends Component {
         <Quotes />
         <Features />
         <Newsletter />
+        <Footer />
       </div>
     );
   }
