@@ -1,13 +1,14 @@
-import React, { Component } from "react";
+import React from "react";
+import Anchor from "../elements/Anchor"
+
+
 import IconFacebook from "../assets/icons/facebook-logo.png"
 import IconTwitter from "../assets/icons/twitter-logo.png"
 import IconYoutube from "../assets/icons/youtube-logo.png"
 import IconTwitch from "../assets/icons/twitch-logo.png"
 
-class Footer extends Component {
-    
-    
-    render() {
+export default function Footer() {
+  
         return(
             <footer className="foot-section">
       <div className="container">
@@ -35,7 +36,7 @@ class Footer extends Component {
               </ul>
               <ul className="socmed-list-box">
                 <li className="nav-item">
-                  <a className="socmed-link" href="#">
+                  <a className="socmed-link" href="https://facebook.com">
                     <img
                       src={IconFacebook}
                       alt="Facebook Icon"
@@ -43,7 +44,7 @@ class Footer extends Component {
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="socmed-link pl-5" href="#">
+                  <a className="socmed-link pl-5" href="https://facebook.com">
                     <img
                       src={IconTwitter}
                       alt="Twitter Icon"
@@ -51,7 +52,7 @@ class Footer extends Component {
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="socmed-link pl-5" href="#">
+                  <a className="socmed-link pl-5" href="https://facebook.com">
                     <img
                       src={IconYoutube}
                       alt="Youtube Icon"
@@ -59,7 +60,7 @@ class Footer extends Component {
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="socmed-link pl-5" href="#">
+                  <a className="socmed-link pl-5" href="https://facebook.com">
                     <img
                       src={IconTwitch}
                       alt="Twitch Icon"
@@ -78,13 +79,13 @@ class Footer extends Component {
             <div className="rules-net">
               <ul className="rulnet-unlst">
                 <li className="rulnet-lst">
-                  <a className="rulnet-link" href="#">Privacy Policy</a>
+                  <Anchor className="rulnet-link" href="/privacy-policy">Privacy Policy</Anchor>
                 </li>
                 <li className="rulnet-lst">
-                  <a className="rulnet-link" href="#">Terms Of Services</a>
+                  <a className="rulnet-link" href="/term">Terms Of Services</a>
                 </li>
                 <li className="rulnet-lst">
-                  <a className="rulnet-link" href="#">Code Of Conduct</a>
+                  <a className="rulnet-link" href="/code-of-conduct">Code Of Conduct</a>
                 </li>
               </ul>
             </div>
@@ -94,6 +95,3 @@ class Footer extends Component {
     </footer>
         )
     }
-}
-
-export default Footer

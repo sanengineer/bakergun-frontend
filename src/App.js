@@ -3,6 +3,9 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import LandingPage from "./pages/LandingPage";
 import GamePage from "./pages/GamePage";
+import SignUpPage from "./pages/SignUp";
+import LoginPage from "./pages/Login";
+
 
 import "./assets/scss/style.scss";
 
@@ -42,6 +45,8 @@ function App() {
       <Router>
         <Route path="/" exact component={LandingPage} />
         <Route path="/game" exact component={GamePage} />
+        <Route path="/signup" exact component={SignUpPage}/>
+        <Route path="/login" exact component={LoginPage}/>
       </Router>
     </div>
   );

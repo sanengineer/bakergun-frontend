@@ -52,7 +52,7 @@ class Hero extends Component {
               Experience new traditional game play
             </p>
             <a
-              href="/game.html"
+              href="/game"
               type="button"
               className="playnow-button btn btn-dark mt-3 mb-3"
             >
