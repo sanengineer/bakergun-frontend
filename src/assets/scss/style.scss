@@ -840,6 +840,12 @@ body {
   display: flex;
 }
 
+.socmed-link {
+  img {
+    width: 30px;
+  }
+}
+
 .footer-second-content {
   padding-top: 20px;
   color: #fff;
@@ -909,7 +915,6 @@ body {
     margin-bottom: 30px;
   }
 }
-
 
 /** Sign Up Page **/
 
