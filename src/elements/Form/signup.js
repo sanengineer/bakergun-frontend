@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import Axios from "axios";
 
 function Signup(props) {
   const [isSignUp, setSignUp] = useState(false);
-  const [isError, setIsError] = useState(false);
+  const [setIsError] = useState(false);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

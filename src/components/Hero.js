@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
 import iconArrowDown from "../assets/icons/arrow-down.png";
-import PrivateAnchor from "../elements/PrivateAnchor";
 
 // const api = axios.create({
 //   baseURL: `${process.env.REACT_APP_HOST}/api/v1/images`,
@@ -52,15 +51,13 @@ class Hero extends Component {
             <p className="desc-hero-page pb-3 pt-3">
               Experience new traditional game play
             </p>
-            <PrivateAnchor>
-              <a
-                href="/game"
-                type="button"
-                className="playnow-button btn btn-dark mt-3 mb-3"
-              >
-                Play Now
-              </a>
-            </PrivateAnchor>
+            <a
+              href="/game"
+              type="button"
+              className="playnow-button btn btn-dark mt-3 mb-3"
+            >
+              Play Now
+            </a>
           </div>
           <div className="hero-arrow-down">
             <span className="arrow-down-text">The Story</span>

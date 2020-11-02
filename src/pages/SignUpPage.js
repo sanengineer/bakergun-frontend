@@ -1,14 +1,14 @@
 import React, { Component } from "react";
-import LoginForm from "../components/Login";
 import NavbarTop from "../components/NavbarTop";
+import SignUpForm from "../components/SignUp";
 import Footer from "../components/Footer";
 
-export default class Gameboard extends Component {
+export default class SignUpPage extends Component {
   render() {
     return (
       <div className="game-media-query">
         <NavbarTop />
-        <LoginForm />
+        <SignUpForm />
         <Footer />
       </div>
     );

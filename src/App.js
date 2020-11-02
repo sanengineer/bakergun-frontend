@@ -1,57 +1,72 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import PrivateRoute from "./PrivateRoute";
-import PrivateAnchor from "./elements/PrivateAnchor/index";
 
 import LandingPage from "./pages/LandingPage";
 import GamePage from "./pages/GamePage";
-import SignUpPage from "./pages/SignUp";
-import LoginPage from "./pages/Login";
+import SignUpPage from "./pages/SignUpPage";
+import LoginPage from "./pages/LoginPage";
+import UserDashboard from "./pages/UserDashboard";
 
 import "./assets/scss/style.scss";
 
-// import axios from "axios";
+import { AuthContext } from "./context/auth";
 
-// const api = axios.create({
-//   baseURL: `https://bakergun-backend.vercel.app/api/v1/gameboard`,
-// });
+const initialState = {
+  isAuthenticated: false,
+  success: null,
+  token: null,
+};
 
-// class App extends Component {
-//   state = {
-//     gameboards: [],
-//   };
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "LOGIN":
+      localStorage.setItem("success", JSON.stringify(action.payload.success));
+      localStorage.setItem("token", JSON.stringify(action.payload.token));
+      return {
+        ...state,
+        isAuthenticated: true,
+        success: action.payload.success,
+        token: action.payload.token,
+      };
+    case "LOGOUT":
+      localStorage.clear();
+      return {
+        ...state,
+        isAuthenticated: false,
+        success: null,
+      };
+    default:
+      return state;
+  }
+};
 
-//   componentDidMount() {
-//     api.get("/").then((res) => {
-//       console.log(res.data);
-//       this.setState({ gameboards: res.data });
-//     });
-//   }
+function App(props) {
+  const [state, dispatch] = React.useReducer(reducer, initialState);
 
-//   render() {
-//     return (
-//       <header className="App-header">
-//         {this.state.gameboards.map((gameboard) => (
-//           // <img key={gameboard.id} src={gameboard.name} alt="" />
-//           <h1 key={gameboard.id}>{gameboard.name}</h1>
-//         ))}
-//       </header>
-//     );
-//   }
-// }
+  useEffect(() => {
+    const success = JSON.parse(localStorage.getItem("success") || null);
+    const token = JSON.parse(localStorage.getItem("token") || null);
 
-function App() {
+    if (success && token) {
+      dispatch({
+        type: "LOGIN",
+        payload: {
+          success,
+          token,
+        },
+      });
+    }
+  }, []);
   return (
-    <div className="App">
+    <AuthContext.Provider value={{ state, dispatch }}>
       <Router>
-        <Route path="/" exact component={LandingPage} />
-        <Route path="/signup" exact component={SignUpPage} />
-        <Route path="/login" exact component={LoginPage} />
-        <PrivateAnchor>
-          <PrivateRoute path="/game" exact component={GamePage} />
-        </PrivateAnchor>
+        <Route exact path="/" component={LandingPage} />
+        <Route path="/signup" component={SignUpPage} />
+        <Route path="/login" component={LoginPage} />
+        <Route path="/game" component={GamePage} />
+        <Route path="/dashboard" component={UserDashboard} />
       </Router>
-    </div>
+    </AuthContext.Provider>
   );
 }
 

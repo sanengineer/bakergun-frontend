@@ -1,84 +1,108 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
-import Axios from "axios";
-import { useAuth } from "../../context/auth";
+import { AuthContext } from "../../context/auth";
 
-function Login(props) {
-  const [isLoggedIn, setLoggedIn] = useState(false);
-  const [isError, setIsError] = useState(false);
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const { setAuthTokens } = useAuth();
-  const referer = "/";
+export const Login = (props) => {
+  const { dispatch } = React.useContext(AuthContext);
+  const initialState = {
+    username: "",
+    password: "",
+    isSubmitting: false,
+    errorMessage: null,
+  };
 
-  const apiUsers = Axios.create({
-    baseURL: `http://localhost:8080/api/v1`,
-  });
+  const [data, setData] = useState(initialState);
 
-  function postLogin() {
-    apiUsers
-      .post("/login", {
-        username,
-        password,
-      })
-      .then((result) => {
-        if (result.status === 200) {
-          setAuthTokens(result.data);
-          setLoggedIn(true);
-        } else {
-          setIsError(true);
+  const handleInputChange = (event) => {
+    setData({
+      ...data,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    setData({
+      ...data,
+      isSubmitting: true,
+      errorMessage: null,
+    });
+    fetch("http://localhost:8082/api/signin", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username: data.username,
+        password: data.password,
+      }),
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
         }
+        throw res;
       })
-      .catch((err) => {
-        setIsError(true);
+      .then((resJson) => {
+        dispatch({
+          type: "LOGIN",
+          payload: resJson,
+        });
+      })
+      .catch((error) => {
+        setData({
+          ...data,
+          isSubmitting: false,
+          errorMessage: error.message || error.statusText,
+        });
       });
-  }
-
-  if (isLoggedIn) {
-    return <Redirect to={referer} />;
-  }
+  };
 
   return (
-    <form className="ml-0">
+    <form onSubmit={handleFormSubmit} className="ml-0 mt-5">
       <div className="form-email-box col-12 mb-3">
-        <label for="userName" className="email-label">
+        <label for="username" className="email-label">
           Username
         </label>
         <input
           type="username"
+          value={data.username}
+          onChange={handleInputChange}
           className="form-control"
           placeholder="radeonvega56"
-          value={username}
-          onChange={(e) => {
-            setUsername(e.target.value);
-          }}
+          name="username"
+          id="username"
         ></input>
       </div>
       <div className="form-email-box col-12 mb-3">
-        <label for="yourPassword" className="email-label">
+        <label for="password" className="email-label">
           Password
         </label>
         <input
           type="password"
-          value={password}
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
+          value={data.password}
+          onChange={handleInputChange}
+          name="password"
+          id="password"
           className="form-control"
           placeholder="*********"
         ></input>
       </div>
+
+      {data.errorMessage && (
+        <span className="form-error">{data.errorMessage}</span>
+      )}
+
       <div className="col-8 mb-3 mt-5 p-0">
         <button
-          onClick={postLogin}
+          disabled={data.isSubmitting}
           className="login-pagebut btn btn-dark w-100"
         >
-          Submit
+          {data.isSubmitting ? <Redirect to="/" /> : "Login"}
         </button>
       </div>
-      {isError && <p>The username or password provided were incorrect!</p>}
     </form>
   );
-}
+};
 
 export default Login;

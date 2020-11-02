@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import IconNavTop from "../components/IconNavtop";
-// import { ReactComponent as Logo } from "";
+import { AuthContext } from "../context/auth";
 
 export default function NavbarTop() {
+  const { state, dispatch } = useContext(AuthContext);
   return (
     <nav className="top-nav navbar navbar-expand-xl navbar-dark fixed-top py-3">
       <div className="container-xl">
@@ -55,9 +56,25 @@ export default function NavbarTop() {
               </Link>
             </li>
             <li className="san-btn-sm">
-              <Link className="san-yellow nav-link text-uppercase" to="/login">
-                Login
-              </Link>
+              {!state.isAuthenticated ? (
+                <Link
+                  className="san-yellow nav-link text-uppercase"
+                  to="/login"
+                >
+                  Login
+                </Link>
+              ) : (
+                <Link
+                  onClick={() =>
+                    dispatch({
+                      type: "LOGOUT",
+                    })
+                  }
+                  className="san-yellow nav-link text-uppercase"
+                >
+                  {state.success.true}Logout
+                </Link>
+              )}
             </li>
           </ul>
         </div>
