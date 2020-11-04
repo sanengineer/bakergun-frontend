@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Redirect } from "react-router-dom";
 import { AuthContext } from "../../context/auth";
 
 export const Login = (props) => {
-  const { dispatch } = React.useContext(AuthContext);
+  const { dispatch } = useContext(AuthContext);
   const initialState = {
     username: "",
     password: "",
@@ -27,7 +27,7 @@ export const Login = (props) => {
       isSubmitting: true,
       errorMessage: null,
     });
-    fetch("http://localhost:8082/api/signin", {
+    fetch("http://localhost:8080/api/v1/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

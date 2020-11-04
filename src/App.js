@@ -63,7 +63,9 @@ function App(props) {
         <Route exact path="/" component={LandingPage} />
         <Route path="/signup" component={SignUpPage} />
         <Route path="/login" component={LoginPage} />
+
         <Route path="/game" component={GamePage} />
+
         <Route path="/dashboard" component={UserDashboard} />
       </Router>
     </AuthContext.Provider>

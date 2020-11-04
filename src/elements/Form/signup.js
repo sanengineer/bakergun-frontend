@@ -1,55 +1,93 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
-import Axios from "axios";
+// import Axios from "axios";
 
 function Signup(props) {
-  const [isSignUp, setSignUp] = useState(false);
-  const [setIsError] = useState(false);
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const referer = "/login";
+  const initialState = {
+    username: "",
+    email: "",
+    password: "",
+    isSubmitting: false,
+    errorMessage: null,
+  };
 
-  const apiUsers = Axios.create({
-    baseURL: `http://localhost:8080/api/v1`,
-  });
+  const [data, setData] = useState(initialState);
 
-  function postSignup() {
-    apiUsers
-      .post("/signup", {
-        username,
-        email,
-        password,
-      })
-      .then((result) => {
-        if (result.status === 200) {
-          setSignUp(true);
-        } else {
-          setIsError(true);
+  const handleInputChange = (event) => {
+    setData({
+      ...data,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const handleFormSumbit = (event) => {
+    event.preventDefault();
+    setData({
+      ...data,
+      isSubmitting: true,
+      errorMessage: null,
+    });
+    fetch("https://localhost:8080/api/v1/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username: data.username,
+        email: data.email,
+        password: data.password,
+      }),
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
         }
+        throw res;
       })
-      .catch((e) => {
-        setIsError(true);
+      .catch((err) => {
+        setData({
+          ...data,
+          isSubmitting: false,
+          errorMessage: err.message,
+        });
       });
-  }
+  };
 
-  if (isSignUp) {
-    return <Redirect to={referer} />;
-  }
+  // const apiUsers = Axios.create({
+  //   baseURL: `http://localhost:8080/api/v1`,
+  // });
+
+  // function postSignup() {
+  //   apiUsers
+  //     .post("/signup", {
+  //       username,
+  //       email,
+  //       password,
+  //     })
+  //     .then((result) => {
+  //       if (result.status === 200) {
+  //         setSignUp(true);
+  //       } else {
+  //         setIsError(true);
+  //       }
+  //     })
+  //     .catch((e) => {
+  //       setIsError(true);
+  //     });
+  // }
 
   return (
-    <form className="ml-0">
+    <form onSubmit={handleFormSumbit} className="ml-0">
       <div class="form-email-box col-12 mb-3">
         <label for="userName" class="email-label">
           Username
         </label>
         <input
           type="username"
-          value={username}
+          value={data.username}
+          onChange={handleInputChange}
           className="form-control"
-          onChange={(e) => {
-            setUsername(e.target.value);
-          }}
+          name="username"
           placeholder="radeonvega56"
         />
       </div>
@@ -59,11 +97,10 @@ function Signup(props) {
         </label>
         <input
           type="email"
-          value={email}
+          value={data.email}
           className="form-control"
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
+          onChange={handleInputChange}
+          name="email"
           placeholder="radeon@binar.co.id"
         />
       </div>
@@ -73,20 +110,19 @@ function Signup(props) {
         </label>
         <input
           type="password"
-          value={password}
+          value={data.password}
           className="form-control"
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
+          onChange={handleInputChange}
+          name="password"
           placeholder="*********"
         />
       </div>
       <div className="col-8 mb-3 mt-5 p-0">
         <button
-          onClick={postSignup}
+          disabled={data.isSubmitting}
           className="signup-pagebut btn btn-dark w-100"
         >
-          Sign Up
+          {data.isSubmitting ? <Redirect to="/login" /> : "Submit"}
         </button>
       </div>
     </form>

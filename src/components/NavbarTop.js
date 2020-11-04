@@ -51,9 +51,18 @@ export default function NavbarTop() {
           </ul>
           <ul className="navbar-nav d-lg-flex order-4">
             <li className="san-btn-sm">
-              <Link className="san-green nav-link text-uppercase" to="/signup">
-                Sign Up
-              </Link>
+              {!state.isAuthenticated ? (
+                <Link
+                  className="san-green nav-link text-uppercase"
+                  to="/signup"
+                >
+                  Sign Up
+                </Link>
+              ) : (
+                <Link className="san-green nav-link text-uppercase" to="/game">
+                  {state.success.true}Play Now
+                </Link>
+              )}
             </li>
             <li className="san-btn-sm">
               {!state.isAuthenticated ? (
