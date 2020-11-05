@@ -27,7 +27,7 @@ export const Login = (props) => {
       isSubmitting: true,
       errorMessage: null,
     });
-    fetch("http://localhost:8080/api/v1/login", {
+    fetch("https://bakergun-backend-service-users.herokuapp.com/api/v1/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

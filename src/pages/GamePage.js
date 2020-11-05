@@ -34,11 +34,14 @@ export default function GamePage() {
   // const token = JSON.parse(localStorage.setItem("token"));
   const [state, dispatch] = React.useReducer(reducer, intialState);
   React.useEffect(() => {
-    fetch("http://localhost:8080/api/v1/user-game-history", {
-      headers: {
-        Authorization: `${authState.token}`,
-      },
-    })
+    fetch(
+      "https://bakergun-backend-service-users.herokuapp.com/api/v1/user-game-history",
+      {
+        headers: {
+          Authorization: `${authState.token}`,
+        },
+      }
+    )
       .then((res) => {
         if (res.ok) {
           return res.json();

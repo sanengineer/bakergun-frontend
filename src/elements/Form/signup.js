@@ -27,17 +27,20 @@ function Signup(props) {
       isSubmitting: true,
       errorMessage: null,
     });
-    fetch("https://localhost:8080/api/v1/signup", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        username: data.username,
-        email: data.email,
-        password: data.password,
-      }),
-    })
+    fetch(
+      "https://bakergun-backend-service-users.herokuapp.com/api/v1/signup",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: data.username,
+          email: data.email,
+          password: data.password,
+        }),
+      }
+    )
       .then((res) => {
         if (res.ok) {
           return res.json();
@@ -54,7 +57,7 @@ function Signup(props) {
   };
 
   // const apiUsers = Axios.create({
-  //   baseURL: `http://localhost:8080/api/v1`,
+  //   baseURL: `https://bakergun-backend-service-users.herokuapp.com/api/v1`,
   // });
 
   // function postSignup() {
