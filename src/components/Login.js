@@ -4,7 +4,7 @@ import Axios from "axios";
 import Login from "../elements/Form/login";
 
 const api = Axios.create({
-  baseURL: `https://bakergun-backend.herokuapp.com/api/v1`,
+  baseURL: `https://bakergun-backend.vercel.app/api/v1/`,
 });
 
 class LoginForm extends Component {

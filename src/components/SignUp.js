@@ -3,7 +3,7 @@ import Axios from "axios";
 
 import SignUpForm from "../elements/Form/signup";
 const api = Axios.create({
-  baseURL: `https://bakergun-backend.herokuapp.com/api/v1/images`,
+  baseURL: `https://bakergun-backend.vercel.app/api/v1/images`,
 });
 
 class SignUp extends Component {

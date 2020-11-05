@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: `https://bakergun-backend.herokuapp.com/api/v1/images`,
+  baseURL: `https://bakergun-backend.vercel.app/api/v1/images`,
 });
 
 class Requirements extends Component {

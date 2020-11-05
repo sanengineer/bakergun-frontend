@@ -7,7 +7,7 @@ import iconArrowDown from "../assets/icons/arrow-down.png";
 // });
 
 const api = axios.create({
-  baseURL: `https://bakergun-backend.herokuapp.com/api/v1/images`,
+  baseURL: `https://bakergun-backend.vercel.app/api/v1/images`,
 });
 
 class Hero extends Component {
