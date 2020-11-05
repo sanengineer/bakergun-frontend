@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import Fade from "react-reveal/Fade";
 import iconArrowDown from "../assets/icons/arrow-down.png";
 
 // const api = axios.create({
@@ -47,10 +48,14 @@ class Hero extends Component {
           style={{ backgroundImage: `url(${this.state.imgBg})` }}
         >
           <div className="hero-content container text-center">
-            <h1 className="header-hero-page">Play Traditional Game</h1>
-            <p className="desc-hero-page pb-3 pt-3">
-              Experience new traditional game play
-            </p>
+            <Fade left cascade>
+              <h1 className="header-hero-page">Play Traditional Game</h1>
+            </Fade>
+            <Fade right cascade>
+              <p className="desc-hero-page pb-3 pt-3">
+                Experience new traditional game play
+              </p>
+            </Fade>
             <a
               href="/game"
               type="button"

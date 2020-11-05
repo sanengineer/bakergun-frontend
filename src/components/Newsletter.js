@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import Pulse from "react-reveal/Pulse";
 
 const api = axios.create({
   baseURL: `https://bakergun-backend.vercel.app/api/v1/images`,
@@ -28,11 +29,13 @@ class Newsletter extends Component {
           <div className="news-letter-content container">
             <div className="row">
               <div className="feat-img">
-                <img
-                  className="newslet-img-self"
-                  src={this.state.imageBg}
-                  alt={this.state.altImg}
-                />
+                <Pulse>
+                  <img
+                    className="newslet-img-self"
+                    src={this.state.imageBg}
+                    alt={this.state.altImg}
+                  />
+                </Pulse>
               </div>
               <div className="newslet-text-box">
                 <h2 className="newslet-h2">Want to stay in touch?</h2>

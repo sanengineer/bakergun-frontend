@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Axios from "axios";
+import Pulse from "react-reveal/Pulse";
 
 import SignUpForm from "../elements/Form/signup";
 const api = Axios.create({
@@ -34,12 +35,14 @@ class SignUp extends Component {
                 <SignUpForm />
               </div>
               <div class="feat-img">
-                <img
-                  id="signUpFeatureImage"
-                  class="signup-page-img-self"
-                  src={this.state.imageBg}
-                  alt={this.state.altImg}
-                />
+                <Pulse>
+                  <img
+                    id="signUpFeatureImage"
+                    class="signup-page-img-self"
+                    src={this.state.imageBg}
+                    alt={this.state.altImg}
+                  />
+                </Pulse>
               </div>
             </div>
           </div>

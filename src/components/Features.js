@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Accordion from "react-bootstrap/Accordion";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
+import Pulse from "react-reveal/Pulse";
 
 const api = axios.create({
   baseURL: `https://bakergun-backend.vercel.app/api/v1/images`,
@@ -30,7 +31,9 @@ class Features extends Component {
           <div className="features-content container">
             <div className="row">
               <div className="feat-img">
-                <img src={this.state.imageBg} alt={this.state.altImg} />
+                <Pulse>
+                  <img src={this.state.imageBg} alt={this.state.altImg} />
+                </Pulse>
               </div>
               <div className="features-content-text">
                 <div className="features-title-1">What's so special?</div>
