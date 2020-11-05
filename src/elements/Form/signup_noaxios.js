@@ -1,19 +1,16 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
-import axios from "axios";
+// import Axios from "axios";
 
 function Signup(props) {
-  const apiUsers = axios.create({
-    // baseURL: `https://bakergun-backend-service-users.herokuapp.com/api/v1`, // Cloud RestApi
-    baseURL: `http://localhost:8080/api/v1`, // Local RestAPI
-  });
-
+  // Without Axios
+  //
   const initialState = {
     username: "",
     email: "",
     password: "",
     isSubmitting: false,
-    errorMessage: null,
+    // errorMessage: null,
   };
 
   const [data, setData] = useState(initialState);
@@ -25,17 +22,42 @@ function Signup(props) {
     });
   };
 
-  const handleFormSumbit = (event) => {
-    event.preventDefault();
-    setData({
-      ...data,
-      isSubmitting: true,
-      errorMessage: null,
-    });
-    apiUsers.post("/signup", data).then((res) => {
-      console.log(res.data.username);
-    });
-  };
+  // const handleFormSumbit = (event) => {
+  //   event.preventDefault();
+  //   setData({
+  //     ...data,
+  //     isSubmitting: true,
+  //     // errorMessage: null,
+  //   });
+  //   fetch(
+  //     "https://bakergun-backend-service-users.herokuapp.com/api/v1/signup",
+  //     {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({
+  //         username: data.username,
+  //         email: data.email,
+  //         password: data.password,
+  //       }),
+  //     }
+  //   )
+  //     .then((res) => {
+  //       console.log(res);
+  //       if (res.ok) {
+  //         return res.json();
+  //       }
+  //       throw res;
+  //     })
+  //     .catch((err) => {
+  //       setData({
+  //         ...data,
+  //         isSubmitting: false,
+  //         errorMessage: err.message,
+  //       });
+  //     });
+  // };
 
   return (
     <form onSubmit={handleFormSumbit} className="ml-0">
