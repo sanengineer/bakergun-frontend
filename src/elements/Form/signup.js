@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 // import { Redirect } from "react-router-dom";
 import axios from "axios";
-import logo from "../../assets/icons/new-round-btn.png";
+import Spinner from "react-bootstrap/Spinner";
 
 function Signup(props) {
   const apiUsers = axios.create({
@@ -97,7 +97,7 @@ function Signup(props) {
           className="signup-pagebut btn btn-dark w-100"
         >
           {data.isSubmitting ? (
-            <img className="spinner" src={logo} alt="loading icon" />
+            <Spinner animation="border" variant="success" />
           ) : (
             "Submit"
           )}

@@ -1,25 +1,7 @@
-// import React from "react";
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-
-// function HandManInput(props) {
-//   const { value, name } = props;
-
-//   return (
-//     <div className="human-button-choose">
-//       <img src="" alt="" />
-//     </div>
-//   );
-// }
-
-//   GameboardList() {
-//     return this.state.gameboard.map((allgameboard) => {
-//       return <p gameboard={allgameboard} />;
-//     });
-//   }
-// }
 
 ReactDOM.render(<App />, document.getElementById("root"));
 // If you want your app to work offline and load faster, you can change

@@ -1,8 +1,7 @@
 import React, { useState, useContext } from "react";
 import { AuthContext } from "../../context/auth";
 import axios from "axios";
-
-import logo from "../../assets/icons/new-round-btn.png";
+import Spinner from "react-bootstrap/Spinner";
 
 export const Login = (props) => {
   const { dispatch } = useContext(AuthContext);
@@ -96,7 +95,7 @@ export const Login = (props) => {
           className="login-pagebut btn btn-dark w-100"
         >
           {data.isSubmitting ? (
-            <img className="spinner" src={logo} alt="loading icon" />
+            <Spinner animation="border" variant="warning" />
           ) : (
             "Login"
           )}
