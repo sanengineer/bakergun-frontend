@@ -1,14 +1,21 @@
 import React, { useState, useContext } from "react";
-import { Redirect } from "react-router-dom";
 import { AuthContext } from "../../context/auth";
+import axios from "axios";
+
+import logo from "../../assets/icons/new-round-btn.png";
 
 export const Login = (props) => {
   const { dispatch } = useContext(AuthContext);
+  const apiUsers = axios.create({
+    baseURL: `https://bakergun-backend-service-users.herokuapp.com/api/v1`, // Cloud RestApi
+    // baseURL: `http://localhost:8080/api/v1`, // Local RestAPI
+  });
+
   const initialState = {
     username: "",
     password: "",
     isSubmitting: false,
-    errorMessage: null,
+    errorMessage: "",
   };
 
   const [data, setData] = useState(initialState);
@@ -27,33 +34,23 @@ export const Login = (props) => {
       isSubmitting: true,
       errorMessage: null,
     });
-    fetch("https://bakergun-backend-service-users.herokuapp.com/api/v1/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        username: data.username,
-        password: data.password,
-      }),
-    })
+    apiUsers
+      .post("/login", data)
       .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        throw res;
+        return res.data;
+        //   console.log(res.data);
       })
-      .then((resJson) => {
+      .then((res) => {
         dispatch({
           type: "LOGIN",
-          payload: resJson,
+          payload: res,
         });
       })
-      .catch((error) => {
+      .catch((err) => {
         setData({
           ...data,
           isSubmitting: false,
-          errorMessage: error.message || error.statusText,
+          errorMessage: err.response.data.message,
         });
       });
   };
@@ -98,7 +95,11 @@ export const Login = (props) => {
           disabled={data.isSubmitting}
           className="login-pagebut btn btn-dark w-100"
         >
-          {data.isSubmitting ? <Redirect to="/" /> : "Login"}
+          {data.isSubmitting ? (
+            <img className="spinner" src={logo} alt="loading icon" />
+          ) : (
+            "Login"
+          )}
         </button>
       </div>
     </form>

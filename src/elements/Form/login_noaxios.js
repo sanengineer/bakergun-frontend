@@ -1,20 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 // import { Redirect } from "react-router-dom";
-import axios from "axios";
+import { AuthContext } from "../../context/auth";
 import logo from "../../assets/icons/new-round-btn.png";
 
-function Signup(props) {
-  const apiUsers = axios.create({
-    baseURL: `https://bakergun-backend-service-users.herokuapp.com/api/v1`, // Cloud RestApi
-    // baseURL: `http://localhost:8080/api/v1`, // Local RestAPI
-  });
-
+export const Login = (props) => {
+  const { dispatch } = useContext(AuthContext);
   const initialState = {
     username: "",
-    email: "",
     password: "",
     isSubmitting: false,
-    errorMessage: "",
+    errorMessage: null,
   };
 
   const [data, setData] = useState(initialState);
@@ -26,31 +21,48 @@ function Signup(props) {
     });
   };
 
-  const handleFormSumbit = (event) => {
+  const handleFormSubmit = (event) => {
     event.preventDefault();
     setData({
       ...data,
       isSubmitting: true,
+      errorMessage: null,
     });
-    apiUsers
-      .post("/signup", data)
+    fetch("https://bakergun-backend-service-users.herokuapp.com/api/v1/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username: data.username,
+        password: data.password,
+      }),
+    })
       .then((res) => {
-        return res.data;
-        //   console.log(res.data);
+        if (res.ok) {
+          return res.json();
+        }
+        throw res;
       })
-      .catch((err) => {
+      .then((resJson) => {
+        dispatch({
+          type: "LOGIN",
+          payload: resJson,
+        });
+      })
+      .catch((error) => {
         setData({
           ...data,
           isSubmitting: false,
-          errorMessage: err.response.data.message,
+          errorMessage: error.message || error.statusText,
         });
       });
   };
 
   return (
-    <form onSubmit={handleFormSumbit} className="ml-0">
-      <div class="form-email-box col-12 mb-3">
-        <label for="userName" class="email-label">
+    <form onSubmit={handleFormSubmit} className="ml-0 mt-5">
+      <div className="form-email-box col-12 mb-3">
+        <label for="username" className="email-label">
           Username
         </label>
         <input
@@ -58,53 +70,44 @@ function Signup(props) {
           value={data.username}
           onChange={handleInputChange}
           className="form-control"
-          name="username"
           placeholder="radeonvega56"
-        />
+          name="username"
+          id="username"
+        ></input>
       </div>
-      <div class="form-email-box col-12 mb-3">
-        <label for="yourEmailAddress" class="email-label">
-          Email Address
-        </label>
-        <input
-          type="email"
-          value={data.email}
-          className="form-control"
-          onChange={handleInputChange}
-          name="email"
-          placeholder="radeon@binar.co.id"
-        />
-      </div>
-      <div class="form-email-box col-12 mb-3">
-        <label for="yourPassword" class="email-label">
+      <div className="form-email-box col-12 mb-3">
+        <label for="password" className="email-label">
           Password
         </label>
         <input
           type="password"
           value={data.password}
-          className="form-control"
           onChange={handleInputChange}
           name="password"
+          id="password"
+          className="form-control"
           placeholder="*********"
-        />
+        ></input>
       </div>
+
       {data.errorMessage && (
         <span className="form-error">{data.errorMessage}</span>
       )}
+
       <div className="col-8 mb-3 mt-5 p-0">
         <button
           disabled={data.isSubmitting}
-          className="signup-pagebut btn btn-dark w-100"
+          className="login-pagebut btn btn-dark w-100"
         >
           {data.isSubmitting ? (
             <img className="spinner" src={logo} alt="loading icon" />
           ) : (
-            "Submit"
+            "Login"
           )}
         </button>
       </div>
     </form>
   );
-}
+};
 
-export default Signup;
+export default Login;
