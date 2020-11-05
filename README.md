@@ -22,3 +22,7 @@ on https://bakergun-frontend.vercel.app/
 ---
 
 ###### UI Design : https://www.figma.com/file/LcJvUL3iMNdFZ9lsLu0XHq/Bakergun-UI-3D-Models-UI-UX?node-id=0%3A1
+
+###### Backend Users Services: https://github.com/sanengineer/bakergun-backend-service-users
+
+###### Backend Images Asset Services: https://github.com/sanengineer/bakergun-backend-service-images
