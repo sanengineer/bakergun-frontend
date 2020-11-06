@@ -63,12 +63,12 @@ export default function GamePage() {
 
   const [dataBgGamePage, setDataBgGamePage] = useState(stateBgGamePage);
 
-  console.log(dataBgGamePage);
+  // console.log(dataBgGamePage);
 
   if (dataBgGamePage.gamePageBg === "") {
     Axios.get("https://bakergun-backend.vercel.app/api/v1/gameboard").then(
       (res) => {
-        console.log(res.data.bgPage);
+        // console.log(res.data.bgPage);
 
         setDataBgGamePage({
           ...dataBgGamePage,

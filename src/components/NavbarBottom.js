@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import Button from "react-bootstrap/Button";
+import { Link } from "react-router-dom";
 import Fade from "react-reveal/Fade";
 
 import homeIco from "../assets/icons/home-icon-btn.png";
@@ -36,20 +36,20 @@ export default class NavbarBottom extends Component {
           <div className="container">
             <div className="navbottom-row row justify-content-between">
               <div className="col-2 pl-0 text-center">
-                <Button
+                <Link
                   type="button"
-                  className="backto-home-btn btn-navbottom mt-2 mb-1 font-weight-bolder"
-                  href="/"
+                  className="backto-home-btn mt-2 mb-1 font-weight-bolder"
+                  to="/"
                 >
                   <img src={homeIco} alt="Home Icon" width="30" />
-                </Button>
+                </Link>
                 <span className="san-text-white">Home</span>
               </div>
               <div className="col-2 text-center">
                 <button
                   type="button"
                   value="Rock"
-                  className="human-button-choose btn-navbottom btn-dark mt-2 mb-1 font-weight-bolder"
+                  className="human-button-choose btn-navbottom mt-2 mb-1 font-weight-bolder"
                 >
                   <img
                     id="buttonHumanHandRock"
@@ -64,7 +64,7 @@ export default class NavbarBottom extends Component {
               <div className="col-2 text-center">
                 <button
                   type="button"
-                  className="human-button-choose btn-navbottom btn-dark mt-2 mb-1 font-weight-bolder"
+                  className="human-button-choose btn-navbottom mt-2 mb-1 font-weight-bolder"
                   value="Paper"
                 >
                   <img
@@ -80,7 +80,7 @@ export default class NavbarBottom extends Component {
               <div className="col-2 text-center">
                 <button
                   type="button"
-                  className="human-button-choose btn-navbottom btn-dark mt-2 mb-1 font-weight-bolder"
+                  className="human-button-choose btn-navbottom mt-2 mb-1 font-weight-bolder"
                   value="Scissors"
                 >
                   <img
@@ -96,7 +96,7 @@ export default class NavbarBottom extends Component {
               <div className="col-2 pr-0 text-center">
                 <button
                   type="button"
-                  className="new-round-button san-green btn-navbottom mt-2 mb-1 font-weight-bolder"
+                  className="new-round-button san-green mt-2 mb-1 font-weight-bolder"
                   id="newRoundButton"
                 >
                   <img src={newRoundIco} alt="New Round Icon" width="30" />

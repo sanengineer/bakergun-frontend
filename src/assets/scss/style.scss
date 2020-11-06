@@ -1106,6 +1106,14 @@ body {
 }
 
 /** Game Page **/
+.container-game-page {
+  background-color: #000;
+  min-width: 100vw;
+  background-repeat: no-repeat;
+  background-position: center;
+  object-fit: cover;
+  background-size: cover;
+}
 .score-board {
   margin-bottom: 40px;
   position: relative;
@@ -1171,6 +1179,14 @@ body {
     #976400 169.63%
   );
   border-color: transparent;
+  border-radius: 15px;
+  padding: 10px;
+  border: unset;
+
+  &:focus {
+    box-shadow: 0 0 0 0.2rem #ffc6379a;
+    outline: 0;
+  }
 }
 .new-round-button {
   background: linear-gradient(
@@ -1180,15 +1196,42 @@ body {
     #001101 169.63%
   );
   border: unset;
+  border-radius: 15px;
+  padding: 10px;
 
   &:focus {
     box-shadow: 0 0 0 0.2rem #02eb2140;
+    outline: 0;
+  }
+}
+
+.human-button-choose {
+  color: #fff;
+  background-color: #343a40;
+  border-color: #343a40;
+  border: unset;
+  &:focus {
+    color: #fff;
+    background-color: #23272b;
+    border-color: #1d2124;
+    box-shadow: 0 0 0 0.2rem rgba(82, 88, 93, 0.5);
+  }
+  &.focus {
+    color: #fff;
+    background-color: #23272b;
+    border-color: #1d2124;
+    box-shadow: 0 0 0 0.2rem rgba(82, 88, 93, 0.5);
   }
 }
 
 .btn-navbottom {
   border-radius: 15px;
   padding: 10px;
+
+  &:focus {
+    box-shadow: 0 0 0 0.2rem #04040476;
+    outline: 0;
+  }
 }
 
 .san-text-white {
