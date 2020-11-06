@@ -7,6 +7,7 @@ import SignUpPage from "./pages/SignUpPage";
 import LoginPage from "./pages/LoginPage";
 import UserDashboard from "./pages/UserDashboard";
 
+// import "./assets/scss/game.scss";
 import "./assets/scss/style.scss";
 
 import { AuthContext } from "./context/auth";

@@ -1,9 +1,12 @@
 import React, { createContext, useContext } from "react";
 import NavbarBottom from "../components/NavbarBottom";
-import Game from "../components/Game";
+// import Game from "../components/Game";
+import ScoreBoard from "../components/ScoreBoard";
 
 import { AuthContext } from "../context/auth";
 import { Redirect } from "react-router-dom";
+import Axios from "axios";
+import { useState } from "react";
 
 const GameContext = createContext();
 
@@ -54,6 +57,27 @@ export default function GamePage() {
       });
   }, [authState.token]);
 
+  const stateBgGamePage = {
+    gamePageBg: "",
+  };
+
+  const [dataBgGamePage, setDataBgGamePage] = useState(stateBgGamePage);
+
+  console.log(dataBgGamePage);
+
+  if (dataBgGamePage.gamePageBg === "") {
+    Axios.get("https://bakergun-backend.vercel.app/api/v1/gameboard").then(
+      (res) => {
+        console.log(res.data.bgPage);
+
+        setDataBgGamePage({
+          ...dataBgGamePage,
+          gamePageBg: res.data.bgPage,
+        });
+      }
+    );
+  }
+
   return (
     <GameContext.Provider
       value={{
@@ -64,9 +88,14 @@ export default function GamePage() {
       {state.isAuthenticated ? (
         <Redirect to="/" />
       ) : (
-        <div className="game-media-query">
-          <NavbarBottom />
-          <Game />
+        <div
+          className="container-game-page"
+          style={{ backgroundImage: `url(${dataBgGamePage.gamePageBg})` }}
+        >
+          <div className="game-media-query">
+            <NavbarBottom />
+            <ScoreBoard />
+          </div>
         </div>
       )}
     </GameContext.Provider>

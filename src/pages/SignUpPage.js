@@ -6,7 +6,7 @@ import Footer from "../components/Footer";
 export default class SignUpPage extends Component {
   render() {
     return (
-      <div className="game-media-query">
+      <div className="signup-page">
         <NavbarTop />
         <SignUpForm />
         <Footer />

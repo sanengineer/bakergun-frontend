@@ -13,7 +13,7 @@ import "../assets/scss/style.scss";
 export default class LandingPage extends Component {
   render() {
     return (
-      <div className="game-media-query">
+      <div className="landing-page">
         <NavbarTop />
         <Hero />
         <AboutUs />

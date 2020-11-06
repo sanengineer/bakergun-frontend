@@ -50,6 +50,19 @@ body {
   font-family: "Rubik", sans-serif;
 }
 
+.game-media-query {
+  width: 100%;
+  max-width: 768px;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+  box-shadow: 0 0 24px rgba(0, 0, 0, 0.15);
+  min-height: 100vh;
+  // background-color: #212121;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
 /* Element Button */
 .san-btn-sm {
   width: 128px;
@@ -1090,4 +1103,96 @@ body {
 .login-page-foot-section {
   z-index: 1;
   position: relative;
+}
+
+/** Game Page **/
+.score-board {
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.win-lose-draw-status {
+  padding: 20px 14px;
+}
+
+.content-wld {
+  margin-bottom: 0px;
+  font-size: 24px;
+  text-transform: uppercase;
+}
+
+.game-page-card {
+  border-radius: 10px;
+  overflow: hidden;
+  border: unset;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  // word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+}
+
+.game-page-card-body {
+  padding: 10px;
+}
+
+.game-page-card-header {
+  padding: 8px 10px;
+  border: unset;
+}
+
+.game-page-card-header-score-board {
+  margin-bottom: 0;
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.game-play {
+  margin-top: auto;
+}
+
+.bottom-nav {
+  overflow: hidden;
+  width: 500px;
+  margin: auto;
+  border-radius: 30px;
+  backdrop-filter: saturate(180%) blur(10px);
+}
+
+.navbottom-row {
+  margin: auto;
+}
+.backto-home-btn {
+  background: linear-gradient(
+    180deg,
+    #ffa800 -28.31%,
+    #c68200 71.68%,
+    #976400 169.63%
+  );
+  border-color: transparent;
+}
+.new-round-button {
+  background: linear-gradient(
+    180deg,
+    #14ff00 -28.31%,
+    #1cbd0e 71.68%,
+    #001101 169.63%
+  );
+  border: unset;
+
+  &:focus {
+    box-shadow: 0 0 0 0.2rem #02eb2140;
+  }
+}
+
+.btn-navbottom {
+  border-radius: 15px;
+  padding: 10px;
+}
+
+.san-text-white {
+  font-size: 10px;
+  font-weight: bold;
+  color: #fff;
 }
