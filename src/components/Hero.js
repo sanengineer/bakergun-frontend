@@ -56,11 +56,7 @@ class Hero extends Component {
                 Experience new traditional game play
               </p>
             </Fade>
-            <a
-              href="/game"
-              type="button"
-              className="playnow-button btn btn-dark mt-3 mb-3"
-            >
+            <a href="/game" className="playnow-button btn btn-dark mt-3 mb-3">
               Play Now
             </a>
           </div>

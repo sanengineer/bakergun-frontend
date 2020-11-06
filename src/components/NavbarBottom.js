@@ -32,13 +32,12 @@ export default class NavbarBottom extends Component {
   render() {
     return (
       <Fade bottom>
-        <nav className="bottom-nav fixed-bottom navbar navbar-expand-lg navbar-dark pt-3 pb-3">
+        <nav className="bottom-nav-moz bottom-nav fixed-bottom navbar navbar-expand-lg navbar-dark pt-3 pb-3">
           <div className="container">
             <div className="navbottom-row row justify-content-between">
               <div className="col-2 pl-0 text-center">
                 <Link
-                  type="button"
-                  className="backto-home-btn mt-2 mb-1 font-weight-bolder"
+                  className="backto-home-btn btn mt-2 mb-1 font-weight-bolder"
                   to="/"
                 >
                   <img src={homeIco} alt="Home Icon" width="30" />
