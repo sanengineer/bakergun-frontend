@@ -21,10 +21,11 @@ export default class NavbarBottom extends Component {
       buttonScissors: "Scissors",
     };
 
+    this.humanScoreResult = 0;
+    this.botScoreResult = 0;
+
     this.handleClick = this.handleClick.bind(this);
   }
-
-  getBotSelect = ["Rock", "Paper", "Scissors"];
 
   componentDidMount() {
     api.get("/gameboard").then((res) => {
@@ -36,14 +37,65 @@ export default class NavbarBottom extends Component {
     });
   }
 
+  whoIsWin(human, bot) {
+    if (human === bot) {
+      return "Draw";
+    }
+
+    if (human === "Rock") {
+      if (bot === "Scissors") {
+        return "You";
+      } else {
+        return "Bot";
+      }
+    }
+
+    if (human === "Paper") {
+      if (bot === "Rock") {
+        return "You";
+      } else {
+        return "Bot";
+      }
+    }
+
+    if (human === "Scissors") {
+      if (bot === "Paper") {
+        return "You";
+      } else {
+        return "Bot";
+      }
+    }
+  }
+
   handleClick(e) {
     this.setState({
       value: e.target.name,
     });
+
+    let getBotSelect = ["Rock", "Paper", "Scissors"];
     let manSelect = e.currentTarget.getAttribute("value");
-    let botRandomSelect = Math.floor(Math.random() * this.getBotSelect.length);
+    let botRandomSelect = Math.floor(Math.random() * getBotSelect.length);
+    let result = this.whoIsWin(manSelect, getBotSelect[botRandomSelect]);
+
+    if (result === "You") {
+      this.humanScoreResult++;
+      result += " Win";
+    }
+
+    if (result === "Bot") {
+      this.botScoreResult++;
+      result += " Win";
+    }
+
+    if (result === "Draw") {
+      result = "Draw";
+    }
+
     console.log("You choose: " + manSelect);
     console.log("Bot choose: " + botRandomSelect);
+    console.log("Man Score: " + this.humanScoreResult);
+    console.log("Bot Score: " + this.botScoreResult);
+    console.log(`Result: ${result}`);
   }
 
   render() {
@@ -66,16 +118,16 @@ export default class NavbarBottom extends Component {
                   type="button"
                   onClick={this.handleClick}
                   className="human-button-choose btn-navbottom mt-2 mb-1 font-weight-bolder"
-                  name="buttonRock"
-                  value="buttonRock"
+                  name="Rock"
+                  value="Rock"
                 >
                   <img
                     id="buttonHumanHandRock"
                     src={this.state.iconRock}
                     alt="Rock Icon"
                     width="30"
-                    name="iconRock"
-                    value="iconRock"
+                    name="Rock"
+                    value="Rock"
                   />
                 </button>
                 <span className="san-text-white">Rock</span>
@@ -85,16 +137,16 @@ export default class NavbarBottom extends Component {
                   type="button"
                   className="human-button-choose btn-navbottom mt-2 mb-1 font-weight-bolder"
                   onClick={this.handleClick}
-                  name="buttonRock"
-                  value="buttonPaper"
+                  name="Rock"
+                  value="Paper"
                 >
                   <img
                     src={this.state.iconPaper}
                     id="buttonHumanHandPaper"
                     alt="Paper Icon"
                     width="30"
-                    name="iconPaper"
-                    value="iconPaper"
+                    name="Paper"
+                    value="Paper"
                   />
                 </button>
                 <span className="san-text-white">Paper</span>
@@ -104,16 +156,16 @@ export default class NavbarBottom extends Component {
                   type="button"
                   className="human-button-choose btn-navbottom mt-2 mb-1 font-weight-bolder"
                   onClick={this.handleClick}
-                  name="buttonScissors"
-                  value="buttonScissors"
+                  name="Scissors"
+                  value="Scissors"
                 >
                   <img
                     src={this.state.iconScissors}
                     id="buttonHumanHandScissors"
                     alt="Scissors Hand"
                     width="30"
-                    name="iconScissors"
-                    value="iconScissors"
+                    name="Scissors"
+                    value="Scissors"
                   />
                 </button>
                 <span className="san-text-white h7">Scissors</span>

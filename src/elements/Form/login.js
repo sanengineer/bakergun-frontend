@@ -2,8 +2,6 @@ import React, { useState, useContext } from "react";
 import { AuthContext } from "../../context/auth";
 import axios from "axios";
 import Spinner from "react-bootstrap/Spinner";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 export const Login = (props) => {
   const { dispatch } = useContext(AuthContext);
