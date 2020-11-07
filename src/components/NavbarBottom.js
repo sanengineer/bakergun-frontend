@@ -24,12 +24,6 @@ export default class NavbarBottom extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  state = {
-    iconRock: "",
-    iconPaper: "",
-    iconScissors: "",
-  };
-
   getBotSelect = ["Rock", "Paper", "Scissors"];
 
   componentDidMount() {
@@ -43,11 +37,6 @@ export default class NavbarBottom extends Component {
   }
 
   handleClick(e) {
-    // this.setState((state) => ({
-    //   buttonRock: state.buttonRock,
-    //   buttonPaper: state.buttonPaper,
-    //   buttonScissors: state.buttonScissors,
-    // }));
     this.setState({
       value: e.target.name,
     });

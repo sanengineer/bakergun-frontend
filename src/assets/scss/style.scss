@@ -49,6 +49,11 @@ body {
   background-color: $black-900;
   font-family: "Rubik", sans-serif;
 }
+.san-form-error {
+  font-size: 10px;
+  color: $yellow-600;
+  margin-left: 10px;
+}
 
 .game-media-query {
   width: 100%;

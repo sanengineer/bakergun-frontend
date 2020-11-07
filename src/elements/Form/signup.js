@@ -5,8 +5,8 @@ import Spinner from "react-bootstrap/Spinner";
 
 function Signup(props) {
   const apiUsers = axios.create({
-    baseURL: `https://bakergun-backend-service-users.herokuapp.com/api/v1`, // Cloud RestApi
-    // baseURL: `http://localhost:8080/api/v1`, // Local RestAPI
+    // baseURL: `https://bakergun-backend-service-users.herokuapp.com/api/v1`, // Cloud RestApi
+    baseURL: `http://localhost:8080/api/v1`, // Local RestAPI
   });
 
   const initialState = {
@@ -89,7 +89,7 @@ function Signup(props) {
         />
       </div>
       {data.errorMessage && (
-        <span className="form-error">{data.errorMessage}</span>
+        <span className="san-form-error">{data.errorMessage}</span>
       )}
       <div className="col-8 mb-3 mt-5 p-0">
         <button
