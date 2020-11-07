@@ -12,6 +12,18 @@ const api = axios.create({
 });
 
 export default class NavbarBottom extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      buttonRock: "Rock",
+      buttonPaper: "Paper",
+      buttonScissors: "Scissors",
+    };
+
+    this.handleClick = this.handleClick.bind(this);
+  }
+
   state = {
     iconRock: "",
     iconPaper: "",
@@ -25,8 +37,20 @@ export default class NavbarBottom extends Component {
         iconPaper: res.data.paperHandUrl,
         iconScissors: res.data.scissorsHandUrl,
       });
-      console.log(res.data.rockHandUrl);
     });
+  }
+
+  handleClick(e) {
+    // this.setState((state) => ({
+    //   buttonRock: state.buttonRock,
+    //   buttonPaper: state.buttonPaper,
+    //   buttonScissors: state.buttonScissors,
+    // }));
+    this.setState({
+      value: e.target.name,
+    });
+
+    console.log("You choose: " + e.target.name);
   }
 
   render() {
@@ -47,15 +71,18 @@ export default class NavbarBottom extends Component {
               <div className="col-2 text-center">
                 <button
                   type="button"
-                  value="Rock"
+                  onClick={this.handleClick}
                   className="human-button-choose btn-navbottom mt-2 mb-1 font-weight-bolder"
+                  name="buttonRock"
+                  value="buttonRock"
                 >
                   <img
                     id="buttonHumanHandRock"
                     src={this.state.iconRock}
                     alt="Rock Icon"
                     width="30"
-                    name="buttonHuman"
+                    name="iconRock"
+                    value="iconRock"
                   />
                 </button>
                 <span className="san-text-white">Rock</span>
@@ -64,14 +91,17 @@ export default class NavbarBottom extends Component {
                 <button
                   type="button"
                   className="human-button-choose btn-navbottom mt-2 mb-1 font-weight-bolder"
-                  value="Paper"
+                  onClick={this.handleClick}
+                  name="buttonRock"
+                  value="buttonPaper"
                 >
                   <img
                     src={this.state.iconPaper}
                     id="buttonHumanHandPaper"
                     alt="Paper Icon"
                     width="30"
-                    name="buttonHuman"
+                    name="iconPaper"
+                    value="iconPaper"
                   />
                 </button>
                 <span className="san-text-white">Paper</span>
@@ -80,14 +110,17 @@ export default class NavbarBottom extends Component {
                 <button
                   type="button"
                   className="human-button-choose btn-navbottom mt-2 mb-1 font-weight-bolder"
-                  value="Scissors"
+                  onClick={this.handleClick}
+                  name="buttonScissors"
+                  value="buttonScissors"
                 >
                   <img
                     src={this.state.iconScissors}
                     id="buttonHumanHandScissors"
-                    name="buttonHuman"
                     alt="Scissors Hand"
                     width="30"
+                    name="iconScissors"
+                    value="iconScissors"
                   />
                 </button>
                 <span className="san-text-white h7">Scissors</span>

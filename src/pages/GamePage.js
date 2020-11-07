@@ -1,6 +1,7 @@
 import React, { createContext, useContext } from "react";
 import NavbarBottom from "../components/NavbarBottom";
 // import Game from "../components/Game";
+import BakergunRandom from "../components/BakergunRandom";
 import ScoreBoard from "../components/ScoreBoard";
 
 import { AuthContext } from "../context/auth";
@@ -94,6 +95,7 @@ export default function GamePage() {
         >
           <div className="game-media-query">
             <NavbarBottom />
+            <BakergunRandom />
             <ScoreBoard />
           </div>
         </div>
