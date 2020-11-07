@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { ThemeConsumer } from "react-bootstrap/esm/ThemeProvider";
+import HeadShake from "react-reveal/HeadShake";
+import Bounce from "react-reveal/Bounce";
 
 const api = axios.create({
   baseURL: `https://bakergun-backend.vercel.app/api/v1`, // Cloud RestApi
@@ -44,30 +45,27 @@ class BakergunRandom extends Component {
         <div className="row justify-content-center">
           <div className="col">
             <div className="player-choice float-right" id="humanCoice">
-              <a
-                href="#"
-                className="human-hand-start btn "
-                value="HumanHandStart"
-              >
-                <img
-                  id="humanHandStart"
-                  src={this.state.humanHandStart}
-                  alt="Human Hand Start"
-                  width="120"
-                  height="120"
-                />
-              </a>
-              <a href="#" className="human-hand-choice btn " id="humanHandRock">
+              <div className="human-hand-start btn" value="HumanHandStart">
+                <Bounce left>
+                  <img
+                    id="humanHandStart"
+                    src={this.state.humanHandStart}
+                    alt="Human Hand Start"
+                    width="120"
+                    height="120"
+                  />
+                </Bounce>
+              </div>
+              <div className="human-hand-choice btn" id="humanHandRock">
                 <img
                   src={this.state.humanHandRock}
                   alt="Human Rock"
                   width="120"
                   height="120"
                 />
-              </a>
-              <a
-                href="#"
-                className="human-hand-choice btn "
+              </div>
+              <div
+                className="human-hand-choice btn"
                 id="humanHandPaper"
                 value="Paper"
               >
@@ -77,10 +75,9 @@ class BakergunRandom extends Component {
                   width="120"
                   height="120"
                 />
-              </a>
-              <a
-                href="#"
-                className="human-hand-choice btn "
+              </div>
+              <div
+                className="human-hand-choice btn"
                 id="humanHandScissors"
                 value="Scissors"
               >
@@ -90,29 +87,26 @@ class BakergunRandom extends Component {
                   width="120"
                   height="120"
                 />
-              </a>
+              </div>
             </div>
           </div>
           <div className="col">
             <div className="container">
               <div className="row">
                 <div className="bot-choice" id="botChoice">
-                  <a
-                    href="#"
-                    className="bot-hand-start btn "
-                    value="BotHandStart"
-                  >
-                    <img
-                      id="botHandStart"
-                      src={this.state.botHandStart}
-                      alt="Bot Hand Start"
-                      width="120"
-                      height="120"
-                    />
-                  </a>
-                  <a
-                    href="#"
-                    className="bot-hand-choice btn "
+                  <div className="bot-hand-start btn" value="BotHandStart">
+                    <Bounce right>
+                      <img
+                        id="botHandStart"
+                        src={this.state.botHandStart}
+                        alt="Bot Hand Start"
+                        width="120"
+                        height="120"
+                      />
+                    </Bounce>
+                  </div>
+                  <div
+                    className="bot-hand-choice btn"
                     id="botHandRock"
                     value="Rock"
                   >
@@ -122,10 +116,9 @@ class BakergunRandom extends Component {
                       width="120"
                       height="120"
                     />
-                  </a>
-                  <a
-                    href="#"
-                    className="bot-hand-choice btn "
+                  </div>
+                  <div
+                    className="bot-hand-choice btn"
                     id="botHandPaper"
                     value="Paper"
                   >
@@ -135,10 +128,9 @@ class BakergunRandom extends Component {
                       width="120"
                       height="120"
                     />
-                  </a>
-                  <a
-                    href="#"
-                    className="bot-hand-choice btn "
+                  </div>
+                  <div
+                    className="bot-hand-choice btn"
                     id="botHandScissors"
                     value="Scissors"
                   >
@@ -148,17 +140,20 @@ class BakergunRandom extends Component {
                       width="120"
                       height="120"
                     />
-                  </a>
+                  </div>
                 </div>
+
                 <div className="bot-face">
-                  <img
-                    id="botFace"
-                    src={this.state.botFaceStart}
-                    alt="Bot Face Start"
-                    width="144"
-                    height="144"
-                    value="Start Game"
-                  />
+                  <HeadShake>
+                    <img
+                      id="botFace"
+                      src={this.state.botFaceStart}
+                      alt="Bot Face Start"
+                      width="144"
+                      height="144"
+                      value="Start Game"
+                    />
+                  </HeadShake>
                 </div>
               </div>
             </div>

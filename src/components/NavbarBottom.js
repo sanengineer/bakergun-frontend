@@ -30,6 +30,8 @@ export default class NavbarBottom extends Component {
     iconScissors: "",
   };
 
+  getBotSelect = ["Rock", "Paper", "Scissors"];
+
   componentDidMount() {
     api.get("/gameboard").then((res) => {
       this.setState({
@@ -49,8 +51,10 @@ export default class NavbarBottom extends Component {
     this.setState({
       value: e.target.name,
     });
-
-    console.log("You choose: " + e.target.name);
+    let manSelect = e.currentTarget.getAttribute("value");
+    let botRandomSelect = Math.floor(Math.random() * this.getBotSelect.length);
+    console.log("You choose: " + manSelect);
+    console.log("Bot choose: " + botRandomSelect);
   }
 
   render() {

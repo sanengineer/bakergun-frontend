@@ -1279,7 +1279,7 @@ body {
     color: #fff;
     background-color: #23272b;
     border-color: #1d2124;
-    box-shadow: 0 0 0 0.2rem rgba(82, 88, 93, 0.5);
+    box-shadow: 0 0 0 0.2rem #3c3c3cb5;
   }
   &.focus {
     color: #fff;
@@ -1294,7 +1294,7 @@ body {
   padding: 10px;
 
   &:focus {
-    box-shadow: 0 0 0 0.2rem #04040476;
+    box-shadow: 0 0 0 0.2rem #3c3c3cb5;
     outline: 0;
   }
 }
