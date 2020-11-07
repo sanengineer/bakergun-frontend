@@ -1160,6 +1160,63 @@ body {
   margin-top: auto;
 }
 
+/**Visble Human Hand Style**/
+.hand-choice {
+  position: relative;
+}
+
+.human-hand-start {
+  position: absolute;
+  right: 0;
+  top: 20px;
+}
+
+.human-hand-choice {
+  position: absolute;
+  right: 0;
+}
+
+#humanHandRock,
+#humanHandPaper,
+#humanHandScissors {
+  display: none;
+}
+
+.visibility-human-hand {
+  display: block !important;
+}
+
+/**Visble Bot Hand Style**/
+.bot-choice {
+  position: relative;
+}
+
+.bot-hand-start {
+  position: absolute;
+  left: 0;
+  top: 20px;
+}
+
+.bot-hand-choice {
+  position: absolute;
+  left: 0;
+}
+
+#botHandRock,
+#botHandPaper,
+#botHandScissors {
+  display: none;
+}
+
+.visibility-bot-hand {
+  display: block;
+}
+
+.bot-face {
+  position: absolute;
+  right: 90px;
+}
+
 .bottom-nav {
   overflow: hidden;
   width: 500px;

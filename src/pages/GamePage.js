@@ -94,9 +94,9 @@ export default function GamePage() {
           style={{ backgroundImage: `url(${dataBgGamePage.gamePageBg})` }}
         >
           <div className="game-media-query">
-            <NavbarBottom />
-            <BakergunRandom />
             <ScoreBoard />
+            <BakergunRandom />
+            <NavbarBottom />
           </div>
         </div>
       )}
