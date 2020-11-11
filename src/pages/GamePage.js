@@ -1,8 +1,9 @@
 import React, { createContext, useContext } from "react";
-import NavbarBottom from "../components/NavbarBottom";
+// import NavbarBottom from "../components/NavbarBottom";
+import GamePageUnion from "../functional/GamePageUnion";
 // import Game from "../components/Game";
-import BakergunRandom from "../components/BakergunRandom";
-import ScoreBoard from "../components/ScoreBoard";
+// import BakergunRandom from "../components/BakergunRandom";
+// import ScoreBoard from "../components/ScoreBoard";
 
 import { AuthContext } from "../context/auth";
 import { Redirect } from "react-router-dom";
@@ -94,29 +95,10 @@ export default function GamePage() {
           style={{ backgroundImage: `url(${dataBgGamePage.gamePageBg})` }}
         >
           <div className="game-media-query">
-            <ScoreBoard />
-            <BakergunRandom />
-            <NavbarBottom />
+            <GamePageUnion />
           </div>
         </div>
       )}
     </GameContext.Provider>
   );
 }
-
-// function Gameboard(props) {
-//   const { setAuthTokens } = useAuth();
-
-//   function logout() {
-//     setAuthTokens;
-//   }
-
-//   return (
-//     <div className="game-media-query">
-//       <NavbarBottom />
-//       <Game />
-//     </div>
-//   );
-// }
-
-// export default Gameboard;

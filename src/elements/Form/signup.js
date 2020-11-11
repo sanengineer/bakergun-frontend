@@ -42,7 +42,7 @@ function Signup(props) {
         setData({
           ...data,
           isSubmitting: false,
-          errorMessage: err.response.data.message,
+          errorMessage: err.message || err.response.data.message,
         });
       });
   };
