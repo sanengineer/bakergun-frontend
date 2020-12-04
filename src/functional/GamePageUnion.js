@@ -40,13 +40,18 @@ export default function GamePageUnion(props) {
   };
 
   const [state, setstate] = useState(initialState);
-  // const [playScore, setPlayScore] = useState(scoreResult);
+  const [playScore, setPlayScore] = useState(scoreResult);
 
   console.log("this is initaialState: ", initialState);
   // console.log(humanScore, setHumanScore);
-  console.log(scoreResult.humanScoreResult, scoreResult.botScoreResult);
+  console.log(
+    "test arrray: ",
+    scoreResult.humanScoreResult,
+    scoreResult.botScoreResult
+  );
   console.log(scoreResult);
   console.log("state out setState: ", state);
+  console.log("this is play score", playScore, setPlayScore);
 
   function StartGame(e) {
     let getBotSelect = ["Rock", "Paper", "Scissors"];
@@ -55,8 +60,10 @@ export default function GamePageUnion(props) {
     let result = whoIsWin(manSelect, getBotSelect[botRandomSelect]);
 
     if (result === "You") {
-      scoreResult.humanScoreResult++;
+      const test1 = scoreResult.humanScoreResult++;
       result += " Win";
+
+      return <p>{test1}</p>;
     }
 
     if (result === "Bot") {
@@ -163,7 +170,7 @@ export default function GamePageUnion(props) {
                   </div>
                   <div className="game-page-card-body">
                     <p className="game-page-card text h2" id="manScore">
-                      ....
+                      {}
                     </p>
                   </div>
                 </div>
@@ -177,7 +184,7 @@ export default function GamePageUnion(props) {
                   </div>
                   <div className="game-page-card-body">
                     <p className="game-page-card text h2" id="botScore">
-                      00
+                      {scoreResult.botScoreResult}
                     </p>
                   </div>
                 </div>
